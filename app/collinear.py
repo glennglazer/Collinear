@@ -35,6 +35,7 @@ class Collinear():
             return True
         else:
             logger.error(f"{self.L1} and {self.L2} have different intercepts ({intercept1} and {intercept2} respectively)")
+            return False
             
     def is_collinear_dot_product(self) -> bool:
         # (B.x-A.x)*(D.x-C.x) + (B.y-A.y)*(D.y-C.y)
@@ -46,7 +47,7 @@ class Collinear():
         # the other way would be to normalize the vectors first, this seems faster
         normalized_dot = dot / (self.L1.get_length() * self.L2.get_length())
         # isclose covers floating point "equality"
-        if isclose(normalized_dot, 1):
+        if isclose(normalized_dot, 1) or isclose(normalized_dot, -1):
             return True
         else:
             logger.error(f"Normalized dot product of {self.L1} and {self.L2} is not 1, it is {normalized_dot}")
