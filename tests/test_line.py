@@ -86,6 +86,12 @@ class TestLine(unittest.TestCase):
         L = Line(p1, p2)
         self.assertEquals(L.get_slope(), -2.0)
         
+    def test_get_slope_vertical(self):
+        p1 = Point(1.0, 2.0)
+        p2 = Point(1.0, 0.0)        
+        L = Line(p1, p2)
+        self.assertEquals(L.get_slope(), 'undef')
+        
     def test_get_intercept(self):
         # y = 5x + 9
         p1 = Point(0.0, 9.0)

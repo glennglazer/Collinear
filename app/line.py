@@ -32,8 +32,12 @@ class Line:
         delta_y = pow((self.p1.get_y() - self.p2.get_y()), 2)
         return sqrt(delta_x + delta_y)
     
-    def get_slope(self) -> float:
+    def get_slope(self) -> float | str:
         delta_x = (self.p2.get_x() - self.p1.get_x())
+        if delta_x == 0:
+            # vertical line, slope undefined
+            # for the purposes of colinearity, we just need the slope to be the same
+            return "undef"
         delta_y = (self.p2.get_y() - self.p1.get_y())
         return delta_y / delta_x
     
